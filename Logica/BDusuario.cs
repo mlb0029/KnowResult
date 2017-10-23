@@ -55,6 +55,11 @@ namespace Logica
             get { return this.password; }
             set { this.password = value; }
         }
+
+        public override int GetHashCode()
+        {
+            return cuenta.GetHashCode();
+        }
     }
 }
 

@@ -6,16 +6,23 @@ namespace Logica
 {
     public class BDCalificacion
     {
-        private int idPrueba;
-        private int idAspirante;
-        private Decimal nota;
+        int idPrueba;
+        int idAspirante;
+        Decimal nota;
+        Boolean calificada;
 
-        public BDCalificacion(int _idPrueba, int _idAspirante, Decimal _nota)
+        public BDCalificacion(int _idPrueba, int _aspirante, Decimal _nota, Boolean _calificada)
         {
             this.idPrueba = _idPrueba;
-            this.idAspirante = _idAspirante;
+            this.idAspirante = _aspirante;
             this.nota = _nota;
+            this.calificada = _calificada;
+        }
 
+        public int IdAspirante
+        {
+            get { return idAspirante; }
+            set { idAspirante = value; }
         }
 
         public int IdPrueba
@@ -30,11 +37,17 @@ namespace Logica
             set { nota = value; }
         }
 
-        public int IdAspirante
+        public Boolean Calificada
         {
-            get { return idAspirante; }
-            set { idAspirante = value; }
+            get { return calificada; }
+            set { calificada = value; }
         }
 
+        public override int GetHashCode()
+        {
+            String st = Convert.ToString(this.idPrueba) + " " + Convert.ToString(this.idAspirante);
+            return st.GetHashCode();
+        }
     }
+}
 }
