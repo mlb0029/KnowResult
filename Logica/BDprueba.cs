@@ -6,7 +6,7 @@ namespace Logica
 {
     public class BDPrueba
     {
-        public BDPrueba(int _idPrueba, string _nombre, string _evaluador)
+        public BDPrueba(int _idPrueba, string _nombre, int _evaluador)
         {
             this.idPrueba = _idPrueba;
             this.nombre = _nombre;
@@ -31,9 +31,9 @@ namespace Logica
             set { this.nombre = value; }
         }
 
-        private string evaluador;
+        private int evaluador;
 
-        public string Evaluador
+        public int Evaluador
         {
             get { return this.evaluador; }
             set { this.evaluador = value; }
