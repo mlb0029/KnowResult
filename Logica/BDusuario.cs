@@ -6,11 +6,8 @@ namespace Logica
 {
     public class BDUsuario
     {
-<<<<<<< HEAD
-        public BDusuario(int _idUsuario, string _cuenta, string _eMail, string _rol, int _password)
-=======
-        public BDUsuario(int _idUsuario, string _cuenta, string _eMail)
->>>>>>> ba2676e9a37b445d2c67c896ff965ba18eb1743b
+
+        public BDUsuario(int _idUsuario, string _cuenta, string _eMail, string _rol, int _password)
         {
             this.idUsuario = _idUsuario;
             this.cuenta = _cuenta;
