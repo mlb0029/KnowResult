@@ -4,17 +4,37 @@ using System.Text;
 
 namespace Logica
 {
-    public class BDcalificacion
+    public class BDCalificacion
     {
-        public BDcalificacion(int _idPrueba, int _idAspirante, int _nota)
+        private int idPrueba;
+        private int idAspirante;
+        private Decimal nota;
+
+        public BDCalificacion(int _idPrueba, int _idAspirante, Decimal _nota)
         {
             this.idPrueba = _idPrueba;
             this.idAspirante = _idAspirante;
             this.nota = _nota;
 
         }
-        private int nota;
-        private int idAspirante;
-        private int idPrueba;
+
+        public int IdPrueba
+        {
+            get { return idPrueba; }
+            set { idPrueba = value; }
+        }
+
+        public Decimal Nota
+        {
+            get { return nota; }
+            set { nota = value; }
+        }
+
+        public int IdAspirante
+        {
+            get { return idAspirante; }
+            set { idAspirante = value; }
+        }
+
     }
 }

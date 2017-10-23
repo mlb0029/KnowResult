@@ -4,9 +4,9 @@ using System.Text;
 
 namespace Logica
 {
-    public class BDusuario
+    public class BDUsuario
     {
-        public BDusuario(int _idUsuario, string _cuenta, string _eMail)
+        public BDUsuario(int _idUsuario, string _cuenta, string _eMail)
         {
             this.idUsuario = _idUsuario;
             this.cuenta = _cuenta;
