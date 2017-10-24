@@ -5,7 +5,7 @@ using Logica;
 namespace Prueba
 {
     [TestClass]
-    public class UsuarioTest
+    public class BDUsuarioTest
     {
         [TestMethod]
         public void TestConstructorSetyGetUsuario()
@@ -18,6 +18,20 @@ namespace Prueba
             Assert.AreEqual(u.Nombre, "Antonio");
             Assert.AreEqual(u.Apellidos, "Pérez de Frutos");
             Assert.AreEqual(u.Rol, 2);
+
+            u.IdUsuario = 2;
+            u.Cuenta = "jrodriguez";
+            u.Nombre = "Jorge";
+            u.Apellidos = "Rodriguez";
+            u.Rol = 1;
+            u.EMail = "j.rodriguez@evaluador.es";
+
+            Assert.AreEqual(u.IdUsuario, 2);
+            Assert.AreEqual(u.Cuenta, "jrodriguez");
+            Assert.AreEqual(u.EMail, "j.rodriguez@evaluador.es");
+            Assert.AreEqual(u.Nombre, "Jorge");
+            Assert.AreEqual(u.Apellidos, "Rodriguez");
+            Assert.AreEqual(u.Rol, 1);
         }
     }
 }

@@ -8,10 +8,10 @@ namespace Logica
     {
         int idPrueba;
         int idAspirante;
-        Decimal nota;
+        Double nota;
         Boolean calificada;
 
-        public BDCalificacion(int _idPrueba, int _aspirante, Decimal _nota, Boolean _calificada)
+        public BDCalificacion(int _idPrueba, int _aspirante, Double _nota, Boolean _calificada)
         {
             this.idPrueba = _idPrueba;
             this.idAspirante = _aspirante;
@@ -31,7 +31,7 @@ namespace Logica
             set { idPrueba = value; }
         }
 
-        public Decimal Nota
+        public Double Nota
         {
             get { return nota; }
             set { nota = value; }

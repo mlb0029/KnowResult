@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Logica
 {
-    class DataBase
+    public class DataBase
     {
         // Almacenes de datos
         private SortedList<int, BDUsuario> usuarios = new SortedList<int, BDUsuario>();
@@ -179,9 +179,8 @@ namespace Logica
         public BDPrueba leePrueba(int _idPrueba)
         {
             BDPrueba retorno = null;
-            if (this.pruebas.TryGetValue(_idPrueba, out retorno))
-                //TODO
-                return retorno;
+            if(this.pruebas.ContainsKey(_idPrueba))
+                retorno = this.pruebas[_idPrueba];
             return retorno;
         }
 
