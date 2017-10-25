@@ -6,40 +6,18 @@ namespace Logica
 {
     public class BDPrueba
     {
+        public int IdPrueba { get; set; }//Permitir cambiar id? Quien?
+
+        public string Nombre { get; set; }
+
+        public int Evaluador { get; set; }//El evaluador debe existir
+
         public BDPrueba(int _idPrueba, string _nombre, int _evaluador)
         {
-            this.idPrueba = _idPrueba;
-            this.nombre = _nombre;
-            this.evaluador = _evaluador;
+            this.IdPrueba = _idPrueba;
+            this.Nombre = _nombre;
+            this.Evaluador = _evaluador;
             
         }
-
-        private int idPrueba;
-
-        public int IdPrueba
-        {
-            get { return this.idPrueba; }
-            set { this.idPrueba = value; }
-        }
-
-        private string nombre;
-
-        
-        public string Nombre
-        {
-            get { return this.nombre; }
-            set { this.nombre = value; }
-        }
-
-        private int evaluador;
-
-        public int Evaluador
-        {
-            get { return this.evaluador; }
-            set { this.evaluador = value; }
-        }
-        
-
-
     }
 }
