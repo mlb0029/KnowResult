@@ -4,9 +4,9 @@ using System.Text;
 
 namespace Logica
 {
-    public class BDUsuario
+    public class Usuario
     {
-        public int IdUsuario { get; set; } //Permitir cambiar id? Quien?
+        public int IdUsuario { get; set; }
 
         public string Cuenta { get; set; }
 
@@ -16,11 +16,11 @@ namespace Logica
 
         public string EMail { get; set; }
 
-        public int Rol { get; set; }
+        public int Rol { get; set; }//Admin(0), Evaluador(1), Aspirante(2)
 
-        public String Password { get; set; } //Quien puede modificar el password?
+        public string Password { get; set; }
 
-        public BDUsuario(int _idUsuario, string _cuenta, string _nombre, string _apellidos, int _rol, string _eMail)
+        public Usuario(int _idUsuario, string _cuenta, string _nombre, string _apellidos, int _rol, string _eMail, string _password)
         {
             this.IdUsuario = _idUsuario;
             this.Cuenta = _cuenta;
@@ -28,7 +28,7 @@ namespace Logica
             this.Apellidos = _apellidos;
             this.Rol = _rol;
             this.EMail = _eMail;
-            this.Password = "P@ssw0rd";
+            this.Password = _password;
         }
 
         public override int GetHashCode()

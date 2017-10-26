@@ -75,16 +75,56 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AñadirPruebas.aspx" />
+    <Content Include="AñadirUsuario.aspx" />
+    <Content Include="Calificaciones.aspx" />
+    <Content Include="IntroducirCalificaciones.aspx" />
     <Content Include="Login.aspx" />
+    <Content Include="Menu_Admin.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AñadirPruebas.aspx.cs">
+      <DependentUpon>AñadirPruebas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AñadirPruebas.aspx.designer.cs">
+      <DependentUpon>AñadirPruebas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AñadirUsuario.aspx.cs">
+      <DependentUpon>AñadirUsuario.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AñadirUsuario.aspx.designer.cs">
+      <DependentUpon>AñadirUsuario.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Calificaciones.aspx.cs">
+      <DependentUpon>Calificaciones.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Calificaciones.aspx.designer.cs">
+      <DependentUpon>Calificaciones.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="IntroducirCalificaciones.aspx.cs">
+      <DependentUpon>IntroducirCalificaciones.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="IntroducirCalificaciones.aspx.designer.cs">
+      <DependentUpon>IntroducirCalificaciones.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Menu_Admin.aspx.cs">
+      <DependentUpon>Menu_Admin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Menu_Admin.aspx.designer.cs">
+      <DependentUpon>Menu_Admin.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

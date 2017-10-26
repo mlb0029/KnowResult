@@ -10,11 +10,13 @@ namespace UnitTestProject1
         [TestMethod]
         public void TestConstructorSetyGetPrueba()
         {
-            BDPrueba p = new BDPrueba(1, "prueba1", 3);
+            BDUsuario u = new BDUsuario(1, "pjimenez", "Pepito", "Jimenez", 1, "p.jimenez@evaluador.es");
+            BDUsuario u2 = new BDUsuario(1, "mjimenez", "Marta", "Jimenez", 1, "m.jimenez@evaluador.es");
+            BDPrueba p = new BDPrueba(1, "prueba1", u);
 
             Assert.AreEqual(p.IdPrueba, 1);
             Assert.AreEqual(p.Nombre, "prueba1");
-            Assert.AreEqual(p.Evaluador, 3);
+            Assert.AreEqual(p.Evaluador, u);
 
             p.IdPrueba = 2;
             p.Nombre = "prueba2";
