@@ -6,11 +6,6 @@ namespace Logica
 {
     interface ICapaDatos
     {
-        SortedList<int, Usuario> Usuarios { get; set; }
-        SortedList<int, Prueba> Pruebas { get; set; }
-        SortedList<int, Calificacion> Calificaciones { get; set; }
-
-        Usuario UsuarioActual { get; set; }
 
         Boolean conectar();
         Boolean cargaDatosIniciales();
@@ -19,21 +14,21 @@ namespace Logica
         int numPruebas();
         int numCalifiCaciones();
 
-        Boolean añadeUsuario();//Admin
+        Boolean añadeUsuario(string _cuenta, string _nombre, string _apellidos, int _rol, string _eMail, string _password);//Admin
         Boolean borraUsuario(string _cuenta);//Admin
         Boolean modificaUsuario(string _cuenta);//Admin
-        Boolean añadePrueba();//Admin
+        Boolean añadePrueba(string _nombre, string _cuenta);//Admin
         Boolean borraPrueba(int _idPrueba);//Admin
         Boolean modificaPrueba(int _idPrueba);//Admin
-        Boolean añadeCalificacion();//Admin
+        Boolean añadeCalificacion(int _idPrueba, string _cuentaAspirante);//Admin
         Boolean borraCalificacion(int _idPrueba, string _cuenta);//Admin
         Boolean modificaCalificacion(int _idPrueba, string _cuenta);//Evaluador
 
         Usuario leeUsuario(string _cuenta);
         Prueba leePrueba(int _idPrueba);
-        List<Prueba> PruebasAspirante(int _idAspirante);//Como aspirante quiero ver de que pruebas puedo obtener calificacion
-        List<Calificacion> CalificacionesAspirante(int _idAspirante);//Como aspirante quiero ver las calificaciones de mis pruebas
-        List<Prueba> PruebasEvaluador(int _idEvaluador);//Como evaluador quiero ver a que pruebas puedo asignar calificaciones
+        List<Prueba> PruebasAspirante(string _cuenta);//Como aspirante quiero ver de que pruebas puedo obtener calificacion
+        List<Calificacion> CalificacionesAspirante(string _cuenta);//Como aspirante quiero ver las calificaciones de mis pruebas
+        List<Prueba> PruebasEvaluador(string _cuenta);//Como evaluador quiero ver a que pruebas puedo asignar calificaciones
         List<Calificacion> CalificacionesPrueba(int _idPrueba);//Como evaluador, quiero tener acceso a las calificaciones de mi prueba y modificaCalificacion
 
     }

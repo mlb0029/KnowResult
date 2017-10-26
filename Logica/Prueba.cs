@@ -18,5 +18,10 @@ namespace Logica
             this.Nombre = _nombre;
             this.Evaluador = _evaluador;
         }
+
+        public override int GetHashCode()
+        {
+            return IdPrueba.GetHashCode();
+        }
     }
 }
