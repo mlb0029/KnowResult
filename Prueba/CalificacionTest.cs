@@ -5,7 +5,7 @@ using Logica;
 namespace Prueba
 {
     [TestClass]
-    public class BDCalificacionTest
+    public class CalificacionTest
     {
         [TestMethod]
         public void TestConstructorSetyGetCalificacion()
