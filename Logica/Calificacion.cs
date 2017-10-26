@@ -9,15 +9,7 @@ namespace Logica
 
         public Prueba Prueba { get; set; }//Prueba debe existir
 
-        public Usuario Aspirante
-        {
-            get {return Aspirante;}
-            set
-            {
-                if (value.Rol == 2)
-                    Aspirante = value;
-            }
-        }//Aspirante debe existir
+        public Usuario Aspirante{ get; set; }//Aspirante debe existir
 
         public Double Nota { get; set; }
 

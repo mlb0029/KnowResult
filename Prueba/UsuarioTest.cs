@@ -5,12 +5,12 @@ using Logica;
 namespace Prueba
 {
     [TestClass]
-    public class BDUsuarioTest
+    public class UsuarioTest
     {
         [TestMethod]
         public void TestConstructorSetyGetUsuario()
         {
-            BDUsuario u = new BDUsuario(1, "aperez", "Antonio", "Pérez de Frutos", 2, "a.perez@aspirante.es");
+            Usuario u = new Usuario(0, "aperez", "Antonio", "Pérez de Frutos", 2, "a.perez@aspirante.es", "password1");
 
             Assert.AreEqual(u.IdUsuario, 1);
             Assert.AreEqual(u.Cuenta, "aperez");
@@ -18,6 +18,7 @@ namespace Prueba
             Assert.AreEqual(u.Nombre, "Antonio");
             Assert.AreEqual(u.Apellidos, "Pérez de Frutos");
             Assert.AreEqual(u.Rol, 2);
+            Assert.AreEqual(u.Password, "password1");
 
             u.IdUsuario = 2;
             u.Cuenta = "jrodriguez";

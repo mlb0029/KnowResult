@@ -49,9 +49,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="BDPruebaTest.cs" />
-    <Compile Include="BDCalificacionTest.cs" />
-    <Compile Include="BDUsuarioTest.cs" />
+    <Compile Include="PruebaTest.cs" />
+    <Compile Include="CalificacionTest.cs" />
+    <Compile Include="UsuarioTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
