@@ -2,7 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Logica;
 
-namespace Prueba
+namespace TestLogica
 {
     [TestClass]
     public class UsuarioTest
@@ -12,7 +12,7 @@ namespace Prueba
         {
             Usuario u = new Usuario(0, "aperez", "Antonio", "Pérez de Frutos", 2, "a.perez@aspirante.es", "password1");
 
-            Assert.AreEqual(u.IdUsuario, 1);
+            Assert.AreEqual(u.IdUsuario, 0);
             Assert.AreEqual(u.Cuenta, "aperez");
             Assert.AreEqual(u.EMail, "a.perez@aspirante.es");
             Assert.AreEqual(u.Nombre, "Antonio");

@@ -10,8 +10,7 @@ namespace Logica
         int numPruebas();
         int numCalifiCaciones();
 
-        //Boolean conectar();
-        bool loggin(Usuario u);
+        bool loggin(String _cuenta);
         void logout();
         Boolean cargaDatosIniciales();
 
@@ -33,10 +32,13 @@ namespace Logica
         Boolean modificaCalificacion(Prueba _prueba, Usuario _aspirante, Double _nota, Boolean _calificada);//Evaluador
 
        
-        List<Prueba> PruebasAspirante(string _cuenta);//Como aspirante quiero ver de que pruebas puedo obtener calificacion
-        List<Calificacion> CalificacionesAspirante(string _cuenta);//Como aspirante quiero ver las calificaciones de mis pruebas
+        List<Prueba> pruebasAspirante(string _cuenta);//Como aspirante quiero ver de que pruebas puedo obtener calificacion
+        List<Calificacion> calificacionesAspirante(string _cuenta);//Como aspirante quiero ver las calificaciones de mis pruebas
 
-        List<Prueba> PruebasEvaluador(string _cuenta);//Como evaluador quiero ver a que pruebas puedo asignar calificaciones
-        List<Calificacion> CalificacionesPrueba(int _idPrueba);//Como evaluador, quiero tener acceso a las calificaciones de mi prueba y modificaCalificacion
+        List<Prueba> pruebasEvaluador(string _cuenta);//Como evaluador quiero ver a que pruebas puedo asignar calificaciones
+        List<Calificacion> calificacionesPrueba(int _idPrueba);//Como evaluador, quiero tener acceso a las calificaciones de mi prueba y modificaCalificacion
+
+        List<Usuario> listarEvaluadores();//Como admin quiero ver qué evaluadores puedo asignar a las pruebas
+        List<Usuario> listarAspirantes();//Como admin quiero ver qué aspirantes puedo asignar a las pruebas
     }
 }

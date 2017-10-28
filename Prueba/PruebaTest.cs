@@ -2,7 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Logica;
 
-namespace UnitTestProject1
+namespace TestLogica
 {
     [TestClass]
     public class PruebaTest
@@ -10,21 +10,40 @@ namespace UnitTestProject1
         [TestMethod]
         public void TestConstructorSetyGetPrueba()
         {
-            BDUsuario u = new BDUsuario(1, "pjimenez", "Pepito", "Jimenez", 1, "p.jimenez@evaluador.es");
-            BDUsuario u2 = new BDUsuario(1, "mjimenez", "Marta", "Jimenez", 1, "m.jimenez@evaluador.es");
-            BDPrueba p = new BDPrueba(1, "prueba1", u);
+            Usuario evaluador1 = new Usuario(0, "pjimenez", "Pepito", "Jimenez", 1, "p.jimenez@evaluador.es","passwd1");
+            Usuario evaluador2 = new Usuario(1, "mjimenez", "Marta", "Jimenez", 1, "m.jimenez@evaluador.es","passwd2");
+            Prueba p = new Prueba(1, "prueba1", evaluador1);
 
             Assert.AreEqual(p.IdPrueba, 1);
             Assert.AreEqual(p.Nombre, "prueba1");
-            Assert.AreEqual(p.Evaluador, u);
+            Assert.AreEqual(p.Evaluador, evaluador1);
+
+            Assert.AreEqual(p.Evaluador.IdUsuario, 0);
+            Assert.AreEqual(p.Evaluador.Cuenta, "pjimenez");
+            Assert.AreEqual(p.Evaluador.Nombre, "Pepito");
+            Assert.AreEqual(p.Evaluador.Apellidos, "Jimenez");
+            Assert.AreEqual(p.Evaluador.Rol, 1);
+            Assert.AreEqual(p.Evaluador.EMail, "p.jimenez@evaluador.es");
+            Assert.AreEqual(p.Evaluador.Password, "passwd1");
 
             p.IdPrueba = 2;
             p.Nombre = "prueba2";
-            p.Evaluador = 3;
+            p.Evaluador = evaluador2;
 
             Assert.AreEqual(p.IdPrueba, 2);
             Assert.AreEqual(p.Nombre, "prueba2");
-            Assert.AreEqual(p.Evaluador, 3);
+            Assert.AreEqual(p.Evaluador, evaluador2);
+
+            Assert.AreEqual(p.Evaluador.IdUsuario, 1);
+            Assert.AreEqual(p.Evaluador.Cuenta, "mjimenez");
+            Assert.AreEqual(p.Evaluador.Nombre, "Marta");
+            Assert.AreEqual(p.Evaluador.Apellidos, "Jimenez");
+            Assert.AreEqual(p.Evaluador.Rol, 1);
+            Assert.AreEqual(p.Evaluador.EMail, "m.jimenez@evaluador.es");
+            Assert.AreEqual(p.Evaluador.Password, "passwd2");
+
+            evaluador2.Apellidos = "Rodriguez";
+            Assert.AreEqual(p.Evaluador.Apellidos, "Rodriguez");
         }
     }
 }

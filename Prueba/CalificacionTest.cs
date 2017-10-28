@@ -2,7 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Logica;
 
-namespace Prueba
+namespace TestLogica
 {
     [TestClass]
     public class CalificacionTest
@@ -10,22 +10,46 @@ namespace Prueba
         [TestMethod]
         public void TestConstructorSetyGetCalificacion()
         {
-            BDCalificacion c = new BDCalificacion(1, 3, 1.5, true);
+            Usuario aspirante = new Usuario(0, "pjimenez", "Pepito", "Jimenez", 2, "p.jimenez@aspirante.es", "passwd1");
+            Usuario evaluador = new Usuario(1, "mjimenez", "Marta", "Jimenez", 1, "m.jimenez@evaluador.es", "passwd2");
+            Prueba prueba = new Prueba(0, "Prueba1", evaluador);
+            Calificacion c = new Calificacion(prueba, aspirante, 0, false);
 
-            Assert.AreEqual(c.IdPrueba, 1);
-            Assert.AreEqual(c.IdAspirante, 3);
-            Assert.AreEqual(c.Nota, 1.5);
-            Assert.AreEqual(c.Calificada, true);
-
-            c.IdPrueba = 2;
-            c.IdAspirante = 4;
-            c.Nota = 0;
-            c.Calificada = false;
-
-            Assert.AreEqual(c.IdPrueba, 2);
-            Assert.AreEqual(c.IdAspirante, 4);
+            Assert.AreEqual(c.Prueba, prueba);
+            Assert.AreEqual(c.Aspirante, aspirante);
             Assert.AreEqual(c.Nota, 0);
             Assert.AreEqual(c.Calificada, false);
+
+            Assert.AreEqual(c.Prueba.Nombre, "Prueba1");
+            Assert.AreEqual(c.Prueba.Evaluador, evaluador);
+
+            Assert.AreEqual(c.Prueba.Evaluador.IdUsuario, 1);
+            Assert.AreEqual(c.Prueba.Evaluador.Cuenta, "mjimenez");
+            Assert.AreEqual(c.Prueba.Evaluador.Nombre, "Marta");
+            Assert.AreEqual(c.Prueba.Evaluador.Apellidos, "Jimenez");
+            Assert.AreEqual(c.Prueba.Evaluador.Rol, 1);
+            Assert.AreEqual(c.Prueba.Evaluador.EMail, "m.jimenez@evaluador.es");
+            Assert.AreEqual(c.Prueba.Evaluador.Password, "passwd2");
+
+            Assert.AreEqual(c.Aspirante, aspirante);
+            Assert.AreEqual(c.Aspirante.IdUsuario, 0);
+            Assert.AreEqual(c.Aspirante.Cuenta, "pjimenez");
+            Assert.AreEqual(c.Aspirante.Nombre, "Pepito");
+            Assert.AreEqual(c.Aspirante.Apellidos, "Jimenez");
+            Assert.AreEqual(c.Aspirante.Rol, 2);
+            Assert.AreEqual(c.Aspirante.EMail, "p.jimenez@aspirante.es");
+            Assert.AreEqual(c.Aspirante.Password, "passwd1");
+
+            c.Nota = 3.5;
+            c.Calificada = true;
+
+            Assert.AreEqual(c.Nota, 3.5);
+            Assert.AreEqual(c.Calificada, true);
+
+            evaluador.Nombre = "Juan";
+            Assert.AreEqual(c.Prueba.Evaluador.Nombre, "Juan");
+            aspirante.EMail = "p.jimenez@aspirante2.es";
+            Assert.AreEqual(c.Aspirante.EMail, "p.jimenez@aspirante2.es");
         }
     }
 }
