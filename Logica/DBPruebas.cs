@@ -340,7 +340,7 @@ namespace Logica
             return retorno;
         }
 
-        List<Usuario> listarEvaluadores()
+        public List<Usuario> listarEvaluadores()
         {
             List<Usuario> retorno = new List<Usuario>();
             foreach (Usuario u in usuarios.Values)
@@ -353,7 +353,7 @@ namespace Logica
             return retorno;
         }
 
-        List<Usuario> listarAspirantes()
+        public List<Usuario> listarAspirantes()
         {
             List<Usuario> retorno = new List<Usuario>();
             foreach (Usuario u in usuarios.Values)
