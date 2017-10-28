@@ -16,11 +16,11 @@ namespace Logica
 
         public string EMail { get; set; }
 
-        public int Rol { get; set; }//Admin(0), Evaluador(1), Aspirante(2)
+        public Roles Rol { get; set; }
 
         public string Password { get; set; }
 
-        public Usuario(int _idUsuario, string _cuenta, string _nombre, string _apellidos, int _rol, string _eMail, string _password)
+        public Usuario(int _idUsuario, string _cuenta, string _nombre, string _apellidos, Roles _rol, string _eMail, string _password)
         {
             this.IdUsuario = _idUsuario;
             this.Cuenta = _cuenta;

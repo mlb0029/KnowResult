@@ -19,9 +19,9 @@ namespace Logica
         Prueba leePrueba(int _idPrueba);
         Calificacion leeCalificacion(Prueba _prueba, Usuario _usuario);
 
-        Boolean añadeUsuario(string _cuenta, string _nombre, string _apellidos, int _rol, string _eMail, string _password);//Admin
+        Boolean añadeUsuario(string _cuenta, string _nombre, string _apellidos, Roles _rol, string _eMail, string _password);//Admin
         Boolean borraUsuario(int _idUsuario);//Admin
-        Boolean modificaUsuario(int id, string _cuenta, string _nombre, string _apellidos, int _rol, string _eMail, string _password);//Admin
+        Boolean modificaUsuario(int id, string _cuenta, string _nombre, string _apellidos, Roles _rol, string _eMail, string _password);//Admin
 
         Boolean añadePrueba(string _nombre, string _cuenta);//Admin
         Boolean borraPrueba(int _idPrueba);//Admin

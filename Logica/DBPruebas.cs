@@ -61,20 +61,20 @@ namespace Logica
             this.idU = 0;
             this.idP = 0;
             // Añade usuarios ADMINISTRADORES rol=0
-            añadeUsuario("prenedo", "Pedro", "Renedo Fernández", 0, "prenedo@administrador.es", "passwd0");
+            añadeUsuario("prenedo", "Pedro", "Renedo Fernández", Roles.Administrador, "prenedo@administrador.es", "passwd0");
             // Añade usuarios EVALUADOES rol=1
-            añadeUsuario("lalonso", "Laura", "Alonso Renedo", 1, "l.alonso@evaluador.es", "passwd1");
-            añadeUsuario("eblanco", "Elena", "Blanco Alonso", 1, "e.blanco@evaluador.es", "passwd2");
+            añadeUsuario("lalonso", "Laura", "Alonso Renedo", Roles.Evaluador, "l.alonso@evaluador.es", "passwd1");
+            añadeUsuario("eblanco", "Elena", "Blanco Alonso", Roles.Evaluador, "e.blanco@evaluador.es", "passwd2");
             // Añade usuarios ASPIRANTES rol=2
-            añadeUsuario("aperez", "Antonio", "Pérez de Frutos", 2, "a.perez@aspirante.es", "passwd3");
-            añadeUsuario("lalvarez", "Lucia", "Álvarez Santaolalla", 2, "l.alvarez@aspirante.es", "passwd4");
-            añadeUsuario("celizari", "Carmen", "Elizari Cuasante", 2, "c.elizari@aspirante.es", "passwd5");
-            añadeUsuario("alopez", "Alberto", "López Marijuan", 2, "a.lopez@aspirante.es", "passwd6");
-            añadeUsuario("emodron", "Emilia", "Modrón Alonso", 2, "e.modron@aspirante.es", "passwd7");
-            añadeUsuario("mdelgado", "Maria del Mar", "Delgado Benito", 2, "m.delgado@aspirante.es", "passwd8");
-            añadeUsuario("omartinez", "Oscar", "Martínez Ezquerro", 2, "o.martinez@aspirante.es", "passwd9");
-            añadeUsuario("pcuesta", "Pedro Luis", "Cuesta Martín", 2, "p.cuesta@aspirante.es", "passwd10");
-            añadeUsuario("crubio", "Consuelo", "Rubio Abad", 2, "c.rubio@aspirante.es", "passwd11");
+            añadeUsuario("aperez", "Antonio", "Pérez de Frutos", Roles.Aspirante, "a.perez@aspirante.es", "passwd3");
+            añadeUsuario("lalvarez", "Lucia", "Álvarez Santaolalla", Roles.Aspirante, "l.alvarez@aspirante.es", "passwd4");
+            añadeUsuario("celizari", "Carmen", "Elizari Cuasante", Roles.Aspirante, "c.elizari@aspirante.es", "passwd5");
+            añadeUsuario("alopez", "Alberto", "López Marijuan", Roles.Aspirante, "a.lopez@aspirante.es", "passwd6");
+            añadeUsuario("emodron", "Emilia", "Modrón Alonso", Roles.Aspirante, "e.modron@aspirante.es", "passwd7");
+            añadeUsuario("mdelgado", "Maria del Mar", "Delgado Benito", Roles.Aspirante, "m.delgado@aspirante.es", "passwd8");
+            añadeUsuario("omartinez", "Oscar", "Martínez Ezquerro", Roles.Aspirante, "o.martinez@aspirante.es", "passwd9");
+            añadeUsuario("pcuesta", "Pedro Luis", "Cuesta Martín", Roles.Aspirante, "p.cuesta@aspirante.es", "passwd10");
+            añadeUsuario("crubio", "Consuelo", "Rubio Abad", Roles.Aspirante, "c.rubio@aspirante.es", "passwd11");
 
             // Añade pruebas
             añadePrueba("Prueba psicoténcia empresa A", "lalonso");
@@ -161,7 +161,7 @@ namespace Logica
             return null;
         }
 
-        public bool añadeUsuario(string _cuenta, string _nombre, string _apellidos, int _rol, string _eMail, string _password)
+        public bool añadeUsuario(string _cuenta, string _nombre, string _apellidos, Roles _rol, string _eMail, string _password)
         {
             Usuario u = leeUsuario(_cuenta);
             if (u == null)
@@ -184,7 +184,7 @@ namespace Logica
             return false;
         }
 
-        public bool modificaUsuario(int id, string _cuenta, string _nombre, string _apellidos, int _rol, string _eMail, string _password)
+        public bool modificaUsuario(int id, string _cuenta, string _nombre, string _apellidos, Roles _rol, string _eMail, string _password)
         {
             Usuario u = leeUsuario(_cuenta);
             if (u != null)
@@ -203,7 +203,7 @@ namespace Logica
         public bool añadePrueba(string _nombre, string _cuenta)
         {
             Usuario evaluador = leeUsuario(_cuenta);
-            if (evaluador != null && evaluador.Rol == 1)
+            if (evaluador != null && evaluador.Rol == Roles.Evaluador)
             {
                 Prueba p = new Prueba(idP++, _nombre, evaluador);
                 pruebas.Add(p.GetHashCode(), p);
@@ -225,7 +225,7 @@ namespace Logica
         public bool modificaPrueba(int _idPrueba, string _nombre, string _cuenta)
         {
             Usuario evaluador = leeUsuario(_cuenta);
-            if (pruebas.ContainsKey(_idPrueba) && evaluador != null && evaluador.Rol == 1)
+            if (pruebas.ContainsKey(_idPrueba) && evaluador != null && evaluador.Rol == Roles.Evaluador)
             {
                 pruebas[_idPrueba].Nombre = _nombre;
                 pruebas[_idPrueba].Evaluador = evaluador;
@@ -239,7 +239,7 @@ namespace Logica
             Prueba prueba = leePrueba(_idPrueba);
             Usuario aspirante = leeUsuario(_cuentaAspirante);
             Calificacion c;
-            if (prueba != null && aspirante != null && aspirante.Rol == 2)
+            if (prueba != null && aspirante != null && aspirante.Rol == Roles.Aspirante)
             {
                 c = leeCalificacion(prueba, aspirante);
                 if (c == null)
@@ -257,7 +257,7 @@ namespace Logica
             Prueba prueba = leePrueba(_idPrueba);
             Usuario aspirante = leeUsuario(_cuentaAspirante);
             Calificacion c;
-            if (prueba != null && aspirante != null && aspirante.Rol == 2)
+            if (prueba != null && aspirante != null && aspirante.Rol == Roles.Aspirante)
             {
                 c = leeCalificacion(prueba, aspirante);
                 if (!c.Equals(null))
@@ -345,7 +345,7 @@ namespace Logica
             List<Usuario> retorno = new List<Usuario>();
             foreach (Usuario u in usuarios.Values)
             {
-                if (u.Rol == 1)
+                if (u.Rol == Roles.Evaluador)
                 {
                     retorno.Add(u);
                 }
@@ -358,7 +358,7 @@ namespace Logica
             List<Usuario> retorno = new List<Usuario>();
             foreach (Usuario u in usuarios.Values)
             {
-                if (u.Rol == 2)
+                if (u.Rol == Roles.Aspirante)
                 {
                     retorno.Add(u);
                 }

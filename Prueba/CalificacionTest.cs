@@ -10,8 +10,8 @@ namespace TestLogica
         [TestMethod]
         public void TestConstructorSetyGetCalificacion()
         {
-            Usuario aspirante = new Usuario(0, "pjimenez", "Pepito", "Jimenez", 2, "p.jimenez@aspirante.es", "passwd1");
-            Usuario evaluador = new Usuario(1, "mjimenez", "Marta", "Jimenez", 1, "m.jimenez@evaluador.es", "passwd2");
+            Usuario aspirante = new Usuario(0, "pjimenez", "Pepito", "Jimenez", Roles.Aspirante, "p.jimenez@aspirante.es", "passwd1");
+            Usuario evaluador = new Usuario(1, "mjimenez", "Marta", "Jimenez", Roles.Evaluador, "m.jimenez@evaluador.es", "passwd2");
             Prueba prueba = new Prueba(0, "Prueba1", evaluador);
             Calificacion c = new Calificacion(prueba, aspirante, 0, false);
 
@@ -27,7 +27,7 @@ namespace TestLogica
             Assert.AreEqual(c.Prueba.Evaluador.Cuenta, "mjimenez");
             Assert.AreEqual(c.Prueba.Evaluador.Nombre, "Marta");
             Assert.AreEqual(c.Prueba.Evaluador.Apellidos, "Jimenez");
-            Assert.AreEqual(c.Prueba.Evaluador.Rol, 1);
+            Assert.AreEqual(c.Prueba.Evaluador.Rol, Roles.Evaluador);
             Assert.AreEqual(c.Prueba.Evaluador.EMail, "m.jimenez@evaluador.es");
             Assert.AreEqual(c.Prueba.Evaluador.Password, "passwd2");
 
@@ -36,7 +36,7 @@ namespace TestLogica
             Assert.AreEqual(c.Aspirante.Cuenta, "pjimenez");
             Assert.AreEqual(c.Aspirante.Nombre, "Pepito");
             Assert.AreEqual(c.Aspirante.Apellidos, "Jimenez");
-            Assert.AreEqual(c.Aspirante.Rol, 2);
+            Assert.AreEqual(c.Aspirante.Rol, Roles.Aspirante);
             Assert.AreEqual(c.Aspirante.EMail, "p.jimenez@aspirante.es");
             Assert.AreEqual(c.Aspirante.Password, "passwd1");
 

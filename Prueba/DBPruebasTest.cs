@@ -20,7 +20,7 @@ namespace TestLogica
             Assert.AreSame(database.leeUsuario(5), database.leeUsuario("celizari"));
             Assert.AreEqual(database.leePrueba(0).Nombre, "Prueba psicoténcia empresa A");
             Assert.AreSame(database.leePrueba(0).Evaluador, database.leeUsuario(1));
-            Assert.AreEqual(database.leePrueba(0).Evaluador.Rol, 1);
+            Assert.AreEqual(database.leePrueba(0).Evaluador.Rol, Roles.Evaluador);
             Assert.IsFalse(database.leeCalificacion(database.leePrueba(0), database.leeUsuario("aperez")).Calificada);
 
             //login, logout
