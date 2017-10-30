@@ -10,6 +10,14 @@
 <body>
     <form id="form1" runat="server">
         <div>
+            <h2>Añadir prueba</h2>
+            <input name ="idPrueba" type="hidden" />
+             <label>Nombre de la prueba <input name ="nombre" type="text" /></label>
+            <br/>
+            <label>Evaluador de la prueba <select name ="evaluador"><% %></select></label>
+            <br/>
+            <input name="enviar" type ="submit"value="Añadir" />
+
         </div>
     </form>
 </body>

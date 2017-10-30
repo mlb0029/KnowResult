@@ -10,10 +10,10 @@ namespace www
 {
     public partial class Login : System.Web.UI.Page
     {
-        DBPruebas bd;
+        DataBase bd;
         protected void Page_Load(object sender, EventArgs e)
         {
-            this.bd= new DBPruebas();
+            this.bd= new DataBase();
         }
 
         protected void cuadroLogin_Authenticate(object sender, AuthenticateEventArgs e)

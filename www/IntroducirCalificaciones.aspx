@@ -10,6 +10,15 @@
 <body>
     <form id="form1" runat="server">
         <div>
+                <h2>Calificar prueba</h2>
+         
+             
+            <label>Prueba <select name ="prueba"></select></label>
+            <br/>
+            <label> Usuario
+                <input name ="calificacion" type="text"/></label>
+            <br/>
+            <input name="enviar" type ="submit"value="Calificar" />
         </div>
     </form>
 </body>
