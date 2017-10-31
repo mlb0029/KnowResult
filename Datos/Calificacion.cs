@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Logica
+namespace Datos
 {
     public class Calificacion
     {

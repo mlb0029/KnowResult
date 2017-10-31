@@ -1,8 +1,8 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Logica;
+using Datos;
 
-namespace TestLogica
+namespace DatosTest
 {
     [TestClass]
     public class UsuarioTest

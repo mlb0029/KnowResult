@@ -1,8 +1,9 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Logica;
+using Datos;
 
-namespace TestLogica
+namespace LogicaTest
 {
     [TestClass]
     public class DBPruebasTest
