@@ -245,7 +245,7 @@ namespace Logica
                 c = leeCalificacion(prueba, aspirante);
                 if (c == null)
                 {
-                    c = new Calificacion(prueba, aspirante, 0, false);
+                    c = new Calificacion(prueba, aspirante);
                     calificaciones.Add(c.GetHashCode(), c);
                     return true;
                 }

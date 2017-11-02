@@ -6,21 +6,25 @@ namespace Datos
 {
     public class Calificacion
     {
+        //ReadOnly
+        public Prueba Prueba { get; }
 
-        public Prueba Prueba { get; set; }//Prueba debe existir
-
-        public Usuario Aspirante{ get; set; }//Aspirante debe existir
+        //ReadOnly
+        public Usuario Aspirante{ get; }
 
         public Double Nota { get; set; }
 
         public Boolean Calificada { get; set; }
 
-        public Calificacion(Prueba _prueba, Usuario _aspirante, Double _nota, Boolean _calificada)
+        public Calificacion(Prueba _prueba, Usuario _aspirante)
         {
+            if (_prueba == null || _aspirante == null)
+                throw new ArgumentNullException();
             this.Prueba = _prueba;
             this.Aspirante = _aspirante;
-            this.Nota = _nota;
-            this.Calificada = _calificada;
+            //Crear calificación simplemente es asignar aspirante a prueba, no calificar
+            this.Nota = 0;
+            this.Calificada = false; 
         }
 
         public override int GetHashCode()
