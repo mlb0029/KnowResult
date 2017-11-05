@@ -10,39 +10,15 @@ namespace www
 {
     public partial class Login : System.Web.UI.Page
     {
-
-        ICapaDatos bd = new DBPruebas();
-        
+        DBPruebas bd;
         protected void Page_Load(object sender, EventArgs e)
         {
-         
+            this.bd= new DBPruebas();
         }
 
-        
-        protected void botonlog_Click(object sender, EventArgs e)
+        protected void cuadroLogin_Authenticate(object sender, AuthenticateEventArgs e)
         {
-            Usuario usuario = bd.leeUsuario(TextBox1.Text);
-            Label1.Text = "";
-            if((usuario==null)|| (TextBox2.Text != usuario.Password))
-            {
-                Label1.Text = "El usuario o contraseña introducidos no son validos";
-            }
-            else
-            {
-                Session["usuario"] = usuario;
-                switch (usuario.Rol)
-                {
-                    case Roles.Administrador: Response.Redirect("~/Menu_Admin");
-                        break;
-                    case Roles.Evaluador: Response.Redirect("~/Menu_Aspi");
-                        break;
-                    case Roles.Aspirante: Response.Redirect("~/Menu_Eval");
-                        break;
-                    default: Response.Redirect("~/Login");
-                        break;
-                }
-
-
-            }
+            
+        }
     }
 }

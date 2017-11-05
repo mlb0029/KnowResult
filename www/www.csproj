@@ -129,8 +129,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Datos\Datos.csproj">
+      <Project>{60172050-5734-4238-961d-87e1d362df9d}</Project>
+      <Name>Datos</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Logica\Logica.csproj">
-      <Project>{d20069dc-59f0-475f-844d-236ed71e2e0b}</Project>
+      <Project>{f6b03e66-be46-4d28-82d2-5e34d6e5a40f}</Project>
       <Name>Logica</Name>
     </ProjectReference>
   </ItemGroup>
