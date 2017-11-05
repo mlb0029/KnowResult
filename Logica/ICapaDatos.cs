@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Logica
 {
-    interface ICapaDatos
+    public interface ICapaDatos
     {
         int numUsuarios();
         int numPruebas();
@@ -23,7 +23,7 @@ namespace Logica
         Boolean borraUsuario(int _idUsuario);//Admin
         Boolean modificaUsuario(int id, string _cuenta, string _nombre, string _apellidos, Roles _rol, string _eMail, string _password);//Admin
 
-        Boolean añadePrueba(string _nombre, string _cuenta);//Admin
+        Boolean añadePrueba(string _nombre, string _cuenta, List<string> _aspirantes);//Admin
         Boolean borraPrueba(int _idPrueba);//Admin
         Boolean modificaPrueba(int _idPrueba, string _nombre, string _cuenta);//Admin
 

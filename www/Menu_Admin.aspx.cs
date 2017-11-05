@@ -13,5 +13,10 @@ namespace www
         {
 
         }
+
+        protected void adduser_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
