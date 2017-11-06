@@ -26,5 +26,11 @@ namespace DatosTest
             Assert.AreEqual(p.Nombre, "prueba2");
             Assert.AreSame(p.Evaluador, evaluador2);
         }
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void constructorConArgumentosNulosPrueba()
+        {
+            Prueba p = new Prueba(1, "p1", null);
+        }
     }
 }

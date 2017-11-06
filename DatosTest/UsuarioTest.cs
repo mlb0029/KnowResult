@@ -37,7 +37,7 @@ namespace DatosTest
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
-        public void constructorConArgumentosNulos()
+        public void constructorConArgumentosNulosUsuario()
         {
             Usuario u = new Usuario(1, "aperez", null, "Pérez de Frutos", Roles.Administrador, "a.perez@aspirante.es", "password1");
         }

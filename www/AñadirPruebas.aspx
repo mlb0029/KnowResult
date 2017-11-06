@@ -11,14 +11,21 @@
     <form id="form1" runat="server">
         <div>
             <h2>Añadir prueba</h2>
-            <input name ="idPrueba" type="hidden" />
-             <label>Nombre de la prueba <input name ="nombre" type="text" /></label>
-            <br/>
-            <label>Evaluador de la prueba <select name ="evaluador"><% %></select></label>
-            <br/>
-            <input name="enviar" type ="submit"value="Añadir" />
-
+            <asp:Label ID="Label1" runat="server" Text="Nombre"></asp:Label>
+            <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
+            <br />
+            <asp:Label ID="Label2" runat="server" Text="Evaluador"></asp:Label>
+            <asp:DropDownList ID="DropDownList1" runat="server"></asp:DropDownList>
+            
+            <br />
+            <asp:Label ID="Label3" runat="server" Text="Aspirante"></asp:Label>
+            <asp:CheckBoxList ID="CheckBoxList1" runat="server"></asp:CheckBoxList>
+            <asp:ListBox ID="ListBox1" runat="server" OnSelectedIndexChanged="ListBox1_SelectedIndexChanged" SelectionMode="Multiple"></asp:ListBox>
+            <br />    
+            <asp:Button ID="Button1" runat="server" Text="Aceptar" OnClick="Button1_Click" />
+            <asp:Button ID="Button2" runat="server" Text="Cancelar" OnClick="Button2_Click" />
         </div>
+        
     </form>
 </body>
 </html>

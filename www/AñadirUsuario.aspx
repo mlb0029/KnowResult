@@ -11,21 +11,32 @@
     <form id="form1" runat="server">
         <div>
             <h2>Añadir usuario</h2>
-            <input name ="idUsuario" type="hidden" />
-             <label>Cuenta del usuario <input name ="cuenta" type="text" /></label>
-            <br/>
-             <label>Nombre<input name ="nombre" type="text" /></label>
-            <br/>
-             <label>Apellidos <input name ="apellidos" type="text" /></label>
-            <br/>
-             <label>Email <input name ="email" type="text" /></label>
-            <br/>
-             <label>Password <input name ="password" type="password"/></label>
-            <br/>
-            <label>Rol <select name ="rol"></select></label>
-            <br/>
-            <input name="enviar" type ="submit"value="Añadir" />
+            <asp:Label ID="Label1" runat="server" Text="Cuenta"></asp:Label>
+            <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
+            <br />
+            <asp:Label ID="Label2" runat="server" Text="Nombre"></asp:Label>
+            <asp:TextBox ID="TextBox2" runat="server"></asp:TextBox>
+            <br />
+             <asp:Label ID="Label3" runat="server" Text="Apellidos"></asp:Label>
+            <asp:TextBox ID="TextBox3" runat="server"></asp:TextBox>
+            <br />
+             <asp:Label ID="Label4" runat="server" Text="Email"></asp:Label>
+            <asp:TextBox ID="TextBox4" runat="server"></asp:TextBox>
+            <br />
+             <asp:Label ID="Label5" runat="server" Text="Rol"></asp:Label>
+            <asp:DropDownList ID="DropDownList1" runat="server">
+                <asp:ListItem>Administrador</asp:ListItem>
+                <asp:ListItem>Aspirante</asp:ListItem>
+                <asp:ListItem>Evaluador</asp:ListItem>
+            </asp:DropDownList>
+            <br />
+             <asp:Label ID="Label6" runat="server" Text="Password"></asp:Label>
+            <asp:TextBox ID="TextBox6" runat="server"></asp:TextBox>
+            <br />
+            <asp:Button ID="Button1" runat="server" Text="Aceptar" OnClick="Button1_Click" />
+            <asp:Button ID="Button2" runat="server" Text="Cancelar" OnClick="Button2_Click" />
         </div>
+        
     </form>
 </body>
 </html>
