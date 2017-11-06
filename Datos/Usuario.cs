@@ -6,8 +6,9 @@ namespace Datos
 {
     public class Usuario
     {
-        public int IdUsuario { get; set; }
-
+        //ReadOnly
+        public int IdUsuario { get; }
+        
         public string Cuenta { get; set; }
 
         public string Nombre { get; set; }
@@ -22,6 +23,9 @@ namespace Datos
 
         public Usuario(int _idUsuario, string _cuenta, string _nombre, string _apellidos, Roles _rol, string _eMail, string _password)
         {
+            //Int y Roles no pueden ser nulos. Error de compilación, no en tiempo de ejecución.
+            if (_cuenta == null || _nombre == null || _apellidos == null || _eMail == null || _password == null)
+                throw new ArgumentNullException();
             this.IdUsuario = _idUsuario;
             this.Cuenta = _cuenta;
             this.Nombre = _nombre;

@@ -10,26 +10,7 @@
 <body>
     <form id="form1" runat="server">
         <div>
-            public Calificacion(Prueba _prueba, Usuario _aspirante, Double _nota, Boolean _calificada)
-            <table>
-                <thead>
 
-                    <tr>
-                        <th>prueba</th>
-                        <th>nota</th>
-                        <th>calificada</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-
-
-                    </tr>
-                </tbody>
-            </table>
         </div>
     </form>
 </body>

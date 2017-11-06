@@ -6,7 +6,8 @@ namespace Datos
 {
     public class Prueba
     {
-        public int IdPrueba { get; set; }
+        //ReadOnly
+        public int IdPrueba { get; }
 
         public string Nombre { get; set; }
 
@@ -14,6 +15,8 @@ namespace Datos
 
         public Prueba(int _idPrueba, string _nombre, Usuario _evaluador)
         {
+            if (_nombre == null || _evaluador == null)
+                throw new ArgumentNullException();
             this.IdPrueba = _idPrueba;
             this.Nombre = _nombre;
             this.Evaluador = _evaluador;
