@@ -78,11 +78,11 @@ namespace Logica
             añadeUsuario("crubio", "Consuelo", "Rubio Abad", Roles.Aspirante, "c.rubio@aspirante.es", "passwd11");
 
             // Añade pruebas
-            añadePrueba("Prueba psicoténcia empresa A", "lalonso",new List<string>() { "Rubio Abad" });
-            añadePrueba("Prueba psicoténcia empresa B", "lalonso", new List<string>() { "Rubio Abad" });
-            añadePrueba("Prueba física empresa A", "eblanco", new List<string>() { "Rubio Abad" });
-            añadePrueba("Prueba física empresa B", "eblanco", new List<string>() { "Rubio Abad" });
-            añadePrueba("Prueba psicoténcia empresa C", "lalonso", new List<string>() { "Rubio Abad" });
+            añadePrueba("Prueba psicoténcia empresa A", "lalonso");
+            añadePrueba("Prueba psicoténcia empresa B", "lalonso");
+            añadePrueba("Prueba física empresa A", "eblanco");
+            añadePrueba("Prueba física empresa B", "eblanco");
+            añadePrueba("Prueba psicoténcia empresa C", "lalonso");
 
             // Añade calificaciones
             añadeCalificacion(0, "aperez");
@@ -201,18 +201,12 @@ namespace Logica
             return false;
         }
 
-        public bool añadePrueba(string _nombre, string _cuenta, List<string> _aspirante)
+        public bool añadePrueba(string _nombre, string _cuenta)
         {
             Usuario evaluador = leeUsuario(_cuenta);
-            List<Usuario> aspirantes = new List<Usuario>(); //Inicializo lista de aspirantes vacia
-
             if (evaluador != null && evaluador.Rol == Roles.Evaluador)
             {
-                foreach (var item in _aspirante) //Por cada cuenta en la lista de cuentas de aspirantes
-                {
-                    aspirantes.Add(leeUsuario(item)); //Te añade el usuario (aspirante) entero a la lista de aspirantes
-                }
-                Prueba p = new Prueba(idP++, _nombre, evaluador,aspirantes);
+                Prueba p = new Prueba(idP++, _nombre, evaluador);
                 pruebas.Add(p.GetHashCode(), p);
                 return true;
             }
