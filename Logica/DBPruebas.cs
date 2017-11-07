@@ -14,47 +14,20 @@ namespace Logica
         private int idU;
         private int idP;
 
-        private Usuario usuarioActual;
-        public Usuario UsuarioActual { get { return usuarioActual; } }
-
         public DBPruebas()
         {
-            usuarioActual = null;
             cargaDatosIniciales();
         }
 
-        public int numUsuarios()
-        {
-            return usuarios.Count;
-        }
-
-        public int numPruebas()
-        {
-            return pruebas.Count;
-        }
-
-        public int numCalifiCaciones()
-        {
-            return calificaciones.Count;
-        }
-
-        public bool loggin(String _cuenta)
+        public Boolean comprobarContraseña(string _cuenta, string _password)
         {
             Usuario u = leeUsuario(_cuenta);
-            if (this.usuarioActual == null && u != null)
-            {
-                this.usuarioActual = u;
+            if (u != null && u.Password.Equals(_password))
                 return true;
-            }
             return false;
         }
 
-        public void logout()
-        {
-            usuarioActual = null;
-        }
-
-        public bool cargaDatosIniciales()
+        public Boolean cargaDatosIniciales()
         {
             this.usuarios = new SortedList<int, Usuario>();
             this.pruebas = new SortedList<int, Prueba>();
@@ -120,49 +93,30 @@ namespace Logica
             return true;
         }
 
-        public Usuario leeUsuario(int _idUsuario)
-        {
-            foreach (Usuario u in usuarios.Values)
-            {
-                if (u.IdUsuario.Equals(_idUsuario))
-                {
-                    return u;
-                }
-            }
-            return null;
-        }
-
         public Usuario leeUsuario(string _cuenta)
         {
             foreach (Usuario u in usuarios.Values)
-            {
-                if (u.Cuenta.Equals(_cuenta))
-                {
+                if (u.Cuenta == _cuenta)
                     return u;
-                }
-            }
+            return null;
+        }
+        
+        private Prueba leePrueba(int _idPrueba)
+        {
+            if (pruebas.ContainsKey(_idPrueba))
+                return pruebas[_idPrueba];
             return null;
         }
 
-        public Prueba leePrueba(int _idPrueba)
-        {
-            Prueba retorno = null;
-            if (this.pruebas.ContainsKey(_idPrueba))
-                retorno = this.pruebas[_idPrueba];
-            return retorno;
-        }
-
-        public Calificacion leeCalificacion(Prueba _prueba, Usuario _usuario)
+        private Calificacion leeCalificacion(int _idPrueba, string _cuentaAspirante)
         {
             foreach (Calificacion ca in calificaciones.Values)
-            {
-                if (ca.Prueba.Equals(_prueba) && ca.Aspirante.Equals(_usuario))
+                if (ca.Prueba.IdPrueba.Equals(_idPrueba) && ca.Aspirante.Cuenta == _cuentaAspirante)
                     return ca;
-            }
             return null;
         }
 
-        public bool añadeUsuario(string _cuenta, string _nombre, string _apellidos, Roles _rol, string _eMail, string _password)
+        public Boolean añadeUsuario(string _cuenta, string _nombre, string _apellidos, Roles _rol, string _eMail, string _password)
         {
             Usuario u = leeUsuario(_cuenta);
             if (u == null)
@@ -174,23 +128,22 @@ namespace Logica
             return false;
         }
 
-        public bool borraUsuario(int _idUsuario)
+        private Boolean borraUsuario(string _cuenta)
         {
-            Usuario u = leeUsuario(_idUsuario);
+            Usuario u = leeUsuario(_cuenta);
             if (u != null)
             {
-                usuarios.Remove(_idUsuario);
+                usuarios.Remove(u.GetHashCode());
                 return true;
             }
             return false;
         }
 
-        public bool modificaUsuario(int id, string _cuenta, string _nombre, string _apellidos, Roles _rol, string _eMail, string _password)
+        private Boolean modificaUsuario(string _cuenta, string _nombre, string _apellidos, Roles _rol, string _eMail, string _password)
         {
             Usuario u = leeUsuario(_cuenta);
             if (u != null)
             {
-                u.Cuenta = _cuenta;
                 u.Nombre = _nombre;
                 u.Apellidos = _apellidos;
                 u.Rol = _rol;
@@ -201,19 +154,22 @@ namespace Logica
             return false;
         }
 
-        public bool añadePrueba(string _nombre, string _cuenta)
+        public Boolean añadePrueba(string _nombre, string _cuenta)
         {
             Usuario evaluador = leeUsuario(_cuenta);
             if (evaluador != null && evaluador.Rol == Roles.Evaluador)
             {
-                Prueba p = new Prueba(idP++, _nombre, evaluador);
-                pruebas.Add(p.GetHashCode(), p);
+                foreach (Prueba p in pruebas.Values)
+                    if (p.Nombre.Equals(_nombre))
+                        return false;
+                Prueba prueba = new Prueba(idP++, _nombre, evaluador);
+                pruebas.Add(prueba.GetHashCode(), prueba);
                 return true;
             }
             return false;
         }
 
-        public bool borraPrueba(int _idPrueba)
+        private Boolean borraPrueba(int _idPrueba)
         {
             if (pruebas.ContainsKey(_idPrueba))
             {
@@ -223,7 +179,7 @@ namespace Logica
             return false;
         }
 
-        public bool modificaPrueba(int _idPrueba, string _nombre, string _cuenta)
+        private Boolean modificaPrueba(int _idPrueba, string _nombre, string _cuenta)
         {
             Usuario evaluador = leeUsuario(_cuenta);
             if (pruebas.ContainsKey(_idPrueba) && evaluador != null && evaluador.Rol == Roles.Evaluador)
@@ -235,47 +191,38 @@ namespace Logica
             return false;
         }
 
-        public bool añadeCalificacion(int _idPrueba, string _cuentaAspirante)
+        public Boolean añadeCalificacion(int _idPrueba, string _cuentaAspirante)
         {
             Prueba prueba = leePrueba(_idPrueba);
             Usuario aspirante = leeUsuario(_cuentaAspirante);
-            Calificacion c;
-            if (prueba != null && aspirante != null && aspirante.Rol == Roles.Aspirante)
+            if (prueba != null && aspirante != null && aspirante.Rol.Equals(Roles.Aspirante) && leeCalificacion(_idPrueba, _cuentaAspirante) == null)
             {
-                c = leeCalificacion(prueba, aspirante);
-                if (c == null)
-                {
-                    c = new Calificacion(prueba, aspirante);
-                    calificaciones.Add(c.GetHashCode(), c);
-                    return true;
-                }
+                Calificacion c = new Calificacion(prueba, aspirante);
+                calificaciones.Add(c.GetHashCode(), c);
+                return true;
             }
             return false;
         }
 
-        public bool borraCalificacion(int _idPrueba, string _cuentaAspirante)//Es como quitar a un aspirante de una prueba
+        private Boolean borraCalificacion(int _idPrueba, string _cuentaAspirante)//Es como quitar a un aspirante de una prueba
         {
-            Prueba prueba = leePrueba(_idPrueba);
-            Usuario aspirante = leeUsuario(_cuentaAspirante);
             Calificacion c;
-            if (prueba != null && aspirante != null && aspirante.Rol == Roles.Aspirante)
+            c = leeCalificacion(_idPrueba, _cuentaAspirante);
+            if (c != null)
             {
-                c = leeCalificacion(prueba, aspirante);
-                if (!c.Equals(null))
-                {
-                    calificaciones.Remove(c.GetHashCode());
-                }
+                calificaciones.Remove(c.GetHashCode());
+                return true;
             }
             return false;
         }
 
-        public bool modificaCalificacion(Prueba _prueba, Usuario _aspirante, Double _nota, Boolean _calificada)
+        public Boolean modificaCalificacion(int _idPrueba, string _cuentaAspirante, double _nota)
         {
-            Calificacion c = leeCalificacion(_prueba, _aspirante);
-            if (!c.Equals(null))
+            Calificacion c = leeCalificacion(_idPrueba, _cuentaAspirante);
+            if (c != null)
             {
                 c.Nota = _nota;
-                c.Calificada = _calificada;
+                c.Calificada = true;
                 return true;
             }
             return false;
@@ -286,13 +233,9 @@ namespace Logica
             List<Prueba> retorno = new List<Prueba>();
             Usuario u = leeUsuario(_cuenta);
             if (u != null)
-            {
                 foreach (Calificacion ca in calificaciones.Values)
-                {
                     if (ca.Aspirante == u)
                         retorno.Add(ca.Prueba);
-                }
-            }
             return retorno;
         }
 
@@ -301,13 +244,9 @@ namespace Logica
             List<Calificacion> retorno = new List<Calificacion>();
             Usuario u = leeUsuario(_cuenta);
             if (u != null)
-            {
                 foreach (Calificacion c in calificaciones.Values)
-                {
                     if (c.Aspirante == u)
                         retorno.Add(c);
-                }
-            }
             return retorno;
         }
 
@@ -316,13 +255,20 @@ namespace Logica
             List<Prueba> retorno = new List<Prueba>();
             Usuario u = leeUsuario(_cuenta);
             if (u != null)
-            {
                 foreach (Calificacion ca in calificaciones.Values)
-                {
                     if (ca.Prueba.Evaluador == u)
                         retorno.Add(ca.Prueba);
-                }
-            }
+            return retorno;
+        }
+
+        public List<Usuario> aspirantesPrueba(int _idPrueba)
+        {
+            List<Usuario> retorno = new List<Usuario>();
+            Prueba p = leePrueba(_idPrueba);
+            if (p != null)
+                foreach (Calificacion ca in calificaciones.Values)
+                    if (ca.Prueba == p)
+                        retorno.Add(ca.Aspirante);
             return retorno;
         }
 
@@ -331,13 +277,9 @@ namespace Logica
             List<Calificacion> retorno = new List<Calificacion>();
             Prueba p = leePrueba(_idPrueba);
             if (p != null)
-            {
                 foreach (Calificacion c in calificaciones.Values)
-                {
                     if (c.Prueba == p)
                         retorno.Add(c);
-                }
-            }
             return retorno;
         }
 
@@ -345,12 +287,8 @@ namespace Logica
         {
             List<Usuario> retorno = new List<Usuario>();
             foreach (Usuario u in usuarios.Values)
-            {
                 if (u.Rol == Roles.Evaluador)
-                {
                     retorno.Add(u);
-                }
-            }
             return retorno;
         }
 
@@ -358,13 +296,14 @@ namespace Logica
         {
             List<Usuario> retorno = new List<Usuario>();
             foreach (Usuario u in usuarios.Values)
-            {
                 if (u.Rol == Roles.Aspirante)
-                {
                     retorno.Add(u);
-                }
-            }
             return retorno;
+        }
+
+        public List<Prueba> listarPruebas()
+        {
+            return new List<Prueba>(pruebas.Values);
         }
     }
 }

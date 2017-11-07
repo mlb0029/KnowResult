@@ -34,12 +34,5 @@ namespace DatosTest
             Assert.AreEqual(u.Apellidos, "Rodriguez");
             Assert.AreEqual(u.Rol, Roles.Evaluador);
         }
-
-        [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
-        public void constructorConArgumentosNulosUsuario()
-        {
-            Usuario u = new Usuario(1, "aperez", null, "Pérez de Frutos", Roles.Administrador, "a.perez@aspirante.es", "password1");
-        }
     }
 }

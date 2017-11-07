@@ -26,12 +26,5 @@ namespace DatosTest
             Assert.AreEqual(c.Nota, 3.5);
             Assert.AreEqual(c.Calificada, true);
         }
-
-        [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
-        public void constructorConArgumentosNulosCalificacion()
-        {
-            Calificacion c = new Calificacion(null, null);
-        }
     }
 }

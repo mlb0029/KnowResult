@@ -18,8 +18,6 @@ namespace Datos
 
         public Calificacion(Prueba _prueba, Usuario _aspirante)
         {
-            if (_prueba == null || _aspirante == null)
-                throw new ArgumentNullException();
             this.Prueba = _prueba;
             this.Aspirante = _aspirante;
             //Crear calificación simplemente es asignar aspirante a prueba, no calificar

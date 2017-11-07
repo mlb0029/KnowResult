@@ -42,7 +42,7 @@ namespace www
             basededatos = (ICapaDatos)Session["basededatos"];
             if (basededatos.añadePrueba(TextBox1.Text, DropDownList1.SelectedValue))
             {
-                int numerodepruebas=basededatos.numPruebas();
+                int numerodepruebas=basededatos.listarPruebas().Count;
                 foreach (ListItem item in ListBox1.Items)
                 {
                     if (item.Selected)

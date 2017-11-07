@@ -15,8 +15,6 @@ namespace Datos
 
         public Prueba(int _idPrueba, string _nombre, Usuario _evaluador)
         {
-            if (_nombre == null || _evaluador == null)
-                throw new ArgumentNullException();
             this.IdPrueba = _idPrueba;
             this.Nombre = _nombre;
             this.Evaluador = _evaluador;
