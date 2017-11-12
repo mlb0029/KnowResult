@@ -18,6 +18,7 @@ namespace www
             if ((usuario == null) || (usuario.Rol != Roles.Aspirante))
             {
                 Response.Redirect("~/Login.aspx");
+                return;
             }
             ICapaDatos basededatos;
             basededatos = (ICapaDatos)Session["basededatos"];
@@ -25,10 +26,19 @@ namespace www
             calificaciones = basededatos.calificacionesAspirante(usuario.Cuenta);
             foreach (var item in calificaciones)
             {
-                form1.Controls.Add(new Label() { Text = item.Prueba.Nombre + ": " + (item.Calificada ? item.Nota.ToString() : "No calificada") });
-            }
+                form1.Controls.Add(new Label() {Width=250, Text = item.Prueba.Nombre +":"});
+                form1.Controls.Add(new Label() { Width = 200, Text = (item.Calificada ? item.Nota.ToString() : "No calificada") });
+                form1.Controls.Add(new LiteralControl("<br/>"));
+        }
+            user.Text = usuario.Cuenta;
+            Rol.Text = usuario.Rol.ToString();
+        }
+        protected void Cerrar_Click(object sender, EventArgs e)
+        {
+            Session["usuario"] = null;
+            Response.Redirect("~/Login.aspx");
         }
 
-       
+
     }
 }

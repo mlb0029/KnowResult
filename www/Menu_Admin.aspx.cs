@@ -18,6 +18,8 @@ namespace www
             if ((usuario == null)||(usuario.Rol!= Roles.Administrador)) {
                 Response.Redirect("~/Login.aspx");
             }
+            user.Text = usuario.Cuenta;
+            Rol.Text = usuario.Rol.ToString();
         }
 
         protected void Button1_Click(object sender, EventArgs e)
@@ -28,6 +30,12 @@ namespace www
         protected void Button2_Click(object sender, EventArgs e)
         {
             Response.Redirect("~/AñadirUsuario.aspx");
+        }
+
+        protected void Cerrar_Click(object sender, EventArgs e)
+        {
+            Session["usuario"] = null;
+            Response.Redirect("~/Login.aspx");
         }
     }
 }

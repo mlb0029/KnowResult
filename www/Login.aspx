@@ -20,6 +20,8 @@
         <asp:TextBox ID="TextBox2" runat="server" TextMode="Password"></asp:TextBox>
         <br />
         <asp:Button ID="Button1" runat="server" Text="Aceptar" OnClick="botonlog_Click" />
+        <br />
+        <asp:Button ID="Button2" runat="server" Text="Recuperar contraseña" OnClick="Button2_Click" />
     </form>
 </body>
 </html>

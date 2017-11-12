@@ -35,9 +35,9 @@ namespace Logica
             this.idU = 0;
             this.idP = 0;
             // Añade usuarios ADMINISTRADORES rol=0
-            añadeUsuario("prenedo", "Pedro", "Renedo Fernández", Roles.Administrador, "prenedo@administrador.es", "passwd0");
+            añadeUsuario("prenedo", "Pedro", "Renedo Fernández", Roles.Administrador, "prenedo@administrador.es", "prene");
             // Añade usuarios EVALUADOES rol=1
-            añadeUsuario("lalonso", "Laura", "Alonso Renedo", Roles.Evaluador, "l.alonso@evaluador.es", "passwd1");
+            añadeUsuario("lalonso", "Laura", "Alonso Renedo", Roles.Evaluador, "l.alonso@evaluador.es", "lau");
             añadeUsuario("eblanco", "Elena", "Blanco Alonso", Roles.Evaluador, "e.blanco@evaluador.es", "passwd2");
             // Añade usuarios ASPIRANTES rol=2
             añadeUsuario("aperez", "Antonio", "Pérez de Frutos", Roles.Aspirante, "a.perez@aspirante.es", "passwd3");
@@ -255,9 +255,9 @@ namespace Logica
             List<Prueba> retorno = new List<Prueba>();
             Usuario u = leeUsuario(_cuenta);
             if (u != null)
-                foreach (Calificacion ca in calificaciones.Values)
-                    if (ca.Prueba.Evaluador == u)
-                        retorno.Add(ca.Prueba);
+                foreach (Prueba ca in pruebas.Values)
+                    if (ca.Evaluador == u)
+                        retorno.Add(ca);
             return retorno;
         }
 

@@ -20,6 +20,7 @@ namespace www
             if ((usuario == null) || (usuario.Rol != Roles.Administrador))
             {
                 Response.Redirect("~/Login.aspx");
+                return;
             }
             ICapaDatos basededatos;
             basededatos = (ICapaDatos)Session["basededatos"];
@@ -34,6 +35,8 @@ namespace www
             {
                 ListBox1.Items.Add(new ListItem(item.Nombre, item.Cuenta));
             }
+            user.Text = usuario.Cuenta;
+            Rol.Text = usuario.Rol.ToString();
         }
 
         protected void Button1_Click(object sender, EventArgs e)
@@ -42,7 +45,7 @@ namespace www
             basededatos = (ICapaDatos)Session["basededatos"];
             if (basededatos.añadePrueba(TextBox1.Text, DropDownList1.SelectedValue))
             {
-                int numerodepruebas=basededatos.listarPruebas().Count;
+                int numerodepruebas=basededatos.listarPruebas().Count-1;
                 foreach (ListItem item in ListBox1.Items)
                 {
                     if (item.Selected)
@@ -66,6 +69,11 @@ namespace www
         protected void ListBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+        protected void Cerrar_Click(object sender, EventArgs e)
+        {
+            Session["usuario"] = null;
+            Response.Redirect("~/Login.aspx");
         }
     }
 }

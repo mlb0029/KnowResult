@@ -11,25 +11,36 @@ namespace www
 {
     public partial class Login : System.Web.UI.Page
     {
-        ICapaDatos bd = new DBPruebas();
+       
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            this.bd= new DBPruebas();
+            
         }
 
         protected void botonlog_Click(object sender, EventArgs e)
         {
-            Usuario usuario = bd.leeUsuario(TextBox1.Text);
+            ICapaDatos basededatos;
+            if (Session["basededatos"] == null)
+            {
+                basededatos = new DBPruebas();
+                Session["basededatos"] = basededatos;
+            }
+            else
+            {
+                basededatos = (ICapaDatos)Session["basededatos"];
+            }
+            
+            Usuario usuario = basededatos.leeUsuario(TextBox1.Text);
             LabelError.Text = "";
-            if ((usuario == null) || (TextBox2.Text != usuario.Password))
+            if ((usuario == null) || (!basededatos.comprobarContraseña(TextBox1.Text,TextBox2.Text)))
                 {
-                    Label1.Text = "El usuario o contraseña introducidos no son validos";
+                    LabelError.Text = "El usuario o contraseña introducidos no son validos";
             }
             else
             {
                 Session["usuario"] = usuario;
-                Session["basededatos"] = bd;
+                Session["basededatos"] = basededatos;
                 switch (usuario.Rol)
                 {
                     case Roles.Administrador:
@@ -37,7 +48,7 @@ namespace www
 
                         break;
                     case Roles.Evaluador:
-                        Response.Redirect("~/Menu_Aspi.aspx");
+                        Response.Redirect("~/IntroducirCalificaciones.aspx");
 
                         break;
                     case Roles.Aspirante:
@@ -54,7 +65,12 @@ namespace www
 
 
 }
+
+        protected void Button2_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/recuperar.aspx");
         }
+    }
     }
 
 

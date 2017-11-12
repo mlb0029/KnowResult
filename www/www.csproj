@@ -82,6 +82,7 @@
     <Content Include="Login.aspx" />
     <Content Include="Menu_Admin.aspx" />
     <Content Include="Web.config" />
+    <Content Include="Recuperar.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AñadirPruebas.aspx.cs">
@@ -127,6 +128,13 @@
       <DependentUpon>Menu_Admin.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Recuperar.aspx.cs">
+      <DependentUpon>Recuperar.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Recuperar.aspx.designer.cs">
+      <DependentUpon>Recuperar.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Datos\Datos.csproj">

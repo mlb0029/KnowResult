@@ -9,17 +9,31 @@
 </head>
 <body>
     <form id="form1" runat="server">
+         <div style="float:right">
+            <asp:Label ID="user" runat="server" Text="Label"></asp:Label>
+            <br />
+            <asp:Label ID="Rol" runat="server" Text="Label"></asp:Label>
+             <br />
+            <asp:Button ID="Cerrar" runat="server" Text="Cerrar" OnClick="Cerrar_Click" />
+             <br />
+        </div>
         <div>
                 <h2>Calificar prueba</h2>
          
              
-            <label>Prueba <select name ="prueba"></select></label>
-            <br/>
-            <label> Usuario
-                <input name ="calificacion" type="text"/></label>
-            <br/>
-            <input name="enviar" type ="submit"value="Calificar" />
+            
         </div>
+         
+        <asp:Label ID="Label1" runat="server" Text="Selecciona la prueba:"></asp:Label>
+         <asp:DropDownList ID="DropDownList1" runat="server" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged" AutoPostBack="true">
+         </asp:DropDownList>
+        <br />
+        <asp:Panel ID="Panel1" runat="server">
+         </asp:Panel>
+        <br />
+
+         <asp:Button ID="Button1" runat="server" Text="Calificar" OnClick="Button1_Click" />
+         
     </form>
 </body>
 </html>
