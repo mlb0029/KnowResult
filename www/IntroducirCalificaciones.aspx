@@ -28,11 +28,16 @@
          <asp:DropDownList ID="DropDownList1" runat="server" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged" AutoPostBack="true">
          </asp:DropDownList>
         <br />
-        <asp:Panel ID="Panel1" runat="server">
-         </asp:Panel>
         <br />
-
+        <br />
+        <br />
+        <asp:DropDownList ID="DropDownList2" runat="server" >
+        </asp:DropDownList>
+          <br />
+                 <asp:TextBox ID="TextBox1" runat="server" ></asp:TextBox>
          <asp:Button ID="Button1" runat="server" Text="Calificar" OnClick="Button1_Click" />
+         
+        
          
     </form>
 </body>
