@@ -9,6 +9,7 @@
 </head>
 <body>
     <form id="form1" runat="server">
+        <h2 id="Titulo">Menu Administrador</h2>
         <div style="float:right">
             <asp:Label ID="user" runat="server" Text="Label"></asp:Label>
             <br />

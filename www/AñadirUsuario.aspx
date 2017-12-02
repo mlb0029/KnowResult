@@ -18,7 +18,7 @@
              <br />
         </div>
         <div>
-            <h2>Añadir usuario</h2>
+            <h2 id="Titulo">Añadir usuario</h2>
             <asp:Label ID="Label1" runat="server" Text="Cuenta"></asp:Label>
             <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
             <br />

@@ -18,14 +18,13 @@
              <br />
         </div>
         <div>
-                <h2>Calificar prueba</h2>
+                <h2 id="Titulo">Calificar prueba</h2>
          
              
             
         </div>
-         
         <asp:Label ID="Label1" runat="server" Text="Selecciona la prueba:"></asp:Label>
-         <asp:DropDownList ID="DropDownList1" runat="server" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged" AutoPostBack="true">
+         <asp:DropDownList ID="DropDownList1" runat="server"  AutoPostBack="true">
          </asp:DropDownList>
         <br />
         <br />

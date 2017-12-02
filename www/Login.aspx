@@ -10,6 +10,8 @@
 <body>
     <form id="form1" runat="server">
 
+        <h2 id="Titulo">Login</h2>
+
         <asp:Label ID="LabelError" runat="server" ></asp:Label>
         <br />
         <asp:Label ID="Label1" runat="server" Text="Cuenta"></asp:Label>

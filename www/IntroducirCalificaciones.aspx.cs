@@ -43,6 +43,7 @@ namespace www
                 }
             }
             List<Calificacion> calificaciones = basededatos.calificacionesPrueba(int.Parse(DropDownList1.SelectedValue));
+            DropDownList2.Items.Clear();
             foreach (var item in calificaciones)
             {
                 DropDownList2.Items.Add(new ListItem(item.Aspirante.Nombre, item.Aspirante.Cuenta));
@@ -62,16 +63,7 @@ namespace www
             TextBox1.Text = string.Empty;
         }
 
-        protected void DropDownList1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            ICapaDatos basededatos;
-            basededatos = (ICapaDatos)Session["basededatos"];
-            List<Calificacion> calificaciones = basededatos.calificacionesPrueba(int.Parse(DropDownList1.SelectedValue));
-            foreach (var item in calificaciones)
-            {
-                DropDownList2.Items.Add(new ListItem(item.Aspirante.Nombre,item.Aspirante.Cuenta));
-            }
-        }
+       
 
     }
 }

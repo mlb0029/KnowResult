@@ -18,7 +18,7 @@
              <br />
         </div>
         <div>
-            <h2>Añadir prueba</h2>
+            <h2 id="Titulo">Añadir prueba</h2>
             <asp:Label ID="Label1" runat="server" Text="Nombre"></asp:Label>
             <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
             <br />
