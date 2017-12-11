@@ -1,56 +1,84 @@
 ﻿using System;
+using System.Text;
+using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Logica;
-using Datos;
 
 namespace LogicaTest
 {
+    /// <summary>
+    /// Descripción resumida de DBPruebasTest
+    /// </summary>
     [TestClass]
     public class DBPruebasTest
     {
-        [TestMethod]
-        public void TestDBPruebas()
+        private ICapaDatos dbPrueba;
+
+        [TestInitialize]
+        public void inicializar()
         {
-            //Contructor, numUsuarios, numPruebas, numCalificaciones, leeUsuario, leePrueba, leeCalificacion
-            DBPruebas database = new DBPruebas();
-            Assert.AreEqual(database.numUsuarios(), 12);
-            Assert.AreEqual(database.numPruebas(), 5);
-            Assert.AreEqual(database.numCalifiCaciones(), 27);
-            Assert.AreEqual(database.leeUsuario(0).Cuenta, "prenedo");
-            Assert.AreEqual(database.leeUsuario("prenedo").IdUsuario, 0);
-            Assert.AreSame(database.leeUsuario(5), database.leeUsuario("celizari"));
-            Assert.AreEqual(database.leePrueba(0).Nombre, "Prueba psicoténcia empresa A");
-            Assert.AreSame(database.leePrueba(0).Evaluador, database.leeUsuario(1));
-            Assert.AreEqual(database.leePrueba(0).Evaluador.Rol, Roles.Evaluador);
-            Assert.IsFalse(database.leeCalificacion(database.leePrueba(0), database.leeUsuario("aperez")).Calificada);
-
-            //login, logout
-            Assert.IsNull(database.UsuarioActual);
-            Assert.IsTrue(database.loggin("prenedo"));
-            Assert.AreSame(database.UsuarioActual, database.leeUsuario(0));
-            database.logout();
-            Assert.AreSame(database.UsuarioActual, null);
-
-            //PruebasAspirante, CalificacionesAspirante
-
-            //PruebasEvaluador, CalificacionesPrueba
-
-            //ListarEvaluadores, ListarAspirantes
+            dbPrueba = new DBPruebas();
         }
 
         [TestMethod]
-        public void TestAddDelModUsuario()
+        public void TestCargaDatosIniciales()
         {
+            Assert.IsTrue(dbPrueba.cargaDatosIniciales());
+            Assert.AreEqual(dbPrueba.listarEvaluadores().Count, 2);
+            Assert.AreEqual(dbPrueba.listarAspirantes().Count, 9);
+            Assert.AreEqual(dbPrueba.listarPruebas().Count, 5);
+            Assert.AreEqual(dbPrueba.pruebasAspirante("aperez").Count, 3);
         }
 
         [TestMethod]
-        public void TestAddDelModPrueba()
+        public void TestcomprobarContraseña()
         {
+            Assert.IsTrue(dbPrueba.comprobarContraseña("lalonso", "lau"));
+            Assert.IsFalse(dbPrueba.comprobarContraseña("prenedo", "lau"));
+            Assert.IsFalse(dbPrueba.comprobarContraseña("Pepe", "lau"));
         }
 
         [TestMethod]
-        public void TestAddDelModCalificacion()
+        public void TestleeUsuario()
         {
+            Assert.AreEqual(dbPrueba.leeUsuario("prenedo").Cuenta, "prenedo");
+        }
+
+        [TestMethod]
+        public void TestañadeUsuario()
+        {
+            dbPrueba.cargaDatosIniciales();
+            Assert.IsFalse(dbPrueba.añadeUsuario("crubio", "Consuelo", "Rubio Abad", Datos.Roles.Aspirante, "c.rubio@aspirante.es", "passwd11"));
+            Assert.AreEqual(dbPrueba.listarAspirantes().Count, 9);
+            Assert.IsTrue(dbPrueba.añadeUsuario("pPrueba", "Prueba", "prueba", Datos.Roles.Administrador, "prueba.prueba@administrador.es", "prene"));
+            Assert.AreEqual(dbPrueba.listarAspirantes().Count, 10);
+        }
+
+        [TestMethod]
+        public void TestAñadePrueba()
+        {
+            dbPrueba.cargaDatosIniciales();
+            Assert.AreEqual(dbPrueba.listarPruebas().Count, 5);
+            Assert.IsFalse(dbPrueba.añadePrueba("Prueba psicoténcia empresa A", "lalonso"));//Ya existe
+            Assert.IsFalse(dbPrueba.añadePrueba("Prueba psicoténcia empresa A", null));//Evaluador no puede ser null
+            Assert.IsFalse(dbPrueba.añadePrueba(null, "lalonso"));//Prueba no puede ser null
+            Assert.IsFalse(dbPrueba.añadePrueba("", "lalonso"));//Prueba no puede ser ""
+            Assert.IsFalse(dbPrueba.añadePrueba("Prueba", "prenedo"));//Administrador no puede evaluar
+            Assert.IsFalse(dbPrueba.añadePrueba("Prueba", "aperez"));//Aspirante no puede evaluar
+            Assert.IsTrue(dbPrueba.añadePrueba("Prueba", "aperez"));
+            Assert.AreEqual(dbPrueba.listarPruebas().Count, 6);
+        }
+
+        [TestMethod]
+        public void TestAñadeCalificacion()
+        {
+            //Assert.IsFalse(dbPrueba.añadeCalificacion(null, "aperez"));//Prueba no puede ser null
+            Assert.IsFalse(dbPrueba.añadeCalificacion(0, null));//Aspirante no puede ser null
+            Assert.IsFalse(dbPrueba.añadeCalificacion(10, "aperez"));//Prueba no existe
+            Assert.IsFalse(dbPrueba.añadeCalificacion(0, ""));//Aspirante no existe
+            Assert.IsFalse(dbPrueba.añadeCalificacion(0, "prenedo"));//Aspirante no puede ser administrador
+            Assert.IsFalse(dbPrueba.añadeCalificacion(0, "lalonso"));//Aspirante no puede ser evaluador
+            Assert.IsTrue(dbPrueba.añadeCalificacion(0, "aperez"));//Aspirante no puede ser evaluador
         }
     }
 }

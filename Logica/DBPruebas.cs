@@ -157,7 +157,7 @@ namespace Logica
         public Boolean añadePrueba(string _nombre, string _cuenta)
         {
             Usuario evaluador = leeUsuario(_cuenta);
-            if (evaluador != null && evaluador.Rol == Roles.Evaluador)
+            if (evaluador != null && evaluador.Rol == Roles.Evaluador && _nombre != null && _nombre != "")
             {
                 foreach (Prueba p in pruebas.Values)
                     if (p.Nombre.Equals(_nombre))
