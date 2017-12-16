@@ -23,6 +23,7 @@ namespace LogicaTest
         [TestMethod]
         public void TestCargaDatosIniciales()
         {
+            dbPrueba.cargaDatosIniciales();
             Assert.IsTrue(dbPrueba.cargaDatosIniciales());
             Assert.AreEqual(dbPrueba.listarEvaluadores().Count, 2);
             Assert.AreEqual(dbPrueba.listarAspirantes().Count, 9);
@@ -33,6 +34,7 @@ namespace LogicaTest
         [TestMethod]
         public void TestcomprobarContraseña()
         {
+            dbPrueba.cargaDatosIniciales();
             Assert.IsTrue(dbPrueba.comprobarContraseña("lalonso", "lau"));
             Assert.IsFalse(dbPrueba.comprobarContraseña("prenedo", "lau"));
             Assert.IsFalse(dbPrueba.comprobarContraseña("Pepe", "lau"));
@@ -41,6 +43,7 @@ namespace LogicaTest
         [TestMethod]
         public void TestleeUsuario()
         {
+            dbPrueba.cargaDatosIniciales();
             Assert.AreEqual(dbPrueba.leeUsuario("prenedo").Cuenta, "prenedo");
         }
 
@@ -48,8 +51,10 @@ namespace LogicaTest
         public void TestañadeUsuario()
         {
             dbPrueba.cargaDatosIniciales();
+            //Usuario existe
             Assert.IsFalse(dbPrueba.añadeUsuario("crubio", "Consuelo", "Rubio Abad", Datos.Roles.Aspirante, "c.rubio@aspirante.es", "passwd11"));
             Assert.AreEqual(dbPrueba.listarAspirantes().Count, 9);
+
             Assert.IsTrue(dbPrueba.añadeUsuario("pPrueba", "Prueba", "prueba", Datos.Roles.Administrador, "prueba.prueba@administrador.es", "prene"));
             Assert.AreEqual(dbPrueba.listarAspirantes().Count, 10);
         }
