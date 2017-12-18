@@ -35,27 +35,27 @@ namespace Logica
             this.idU = 0;
             this.idP = 0;
             // Añade usuarios ADMINISTRADORES rol=0
-            añadeUsuario("prenedo", "Pedro", "Renedo Fernandez", Roles.Administrador, "prenedo@administrador.es", "prene");
+            añadeUsuario("prenedo", "Pedro", "Renedo Fernández", Roles.Administrador, "prenedo@administrador.es", "prene");
             // Añade usuarios EVALUADOES rol=1
             añadeUsuario("lalonso", "Laura", "Alonso Renedo", Roles.Evaluador, "l.alonso@evaluador.es", "lau");
             añadeUsuario("eblanco", "Elena", "Blanco Alonso", Roles.Evaluador, "e.blanco@evaluador.es", "passwd2");
             // Añade usuarios ASPIRANTES rol=2
-            añadeUsuario("aperez", "Antonio", "Perez de Frutos", Roles.Aspirante, "a.perez@aspirante.es", "passwd3");
-            añadeUsuario("lalvarez", "Lucia", "Alvarez Santaolalla", Roles.Aspirante, "l.alvarez@aspirante.es", "passwd4");
+            añadeUsuario("aperez", "Antonio", "Pérez de Frutos", Roles.Aspirante, "a.perez@aspirante.es", "passwd3");
+            añadeUsuario("lalvarez", "Lucia", "Álvarez Santaolalla", Roles.Aspirante, "l.alvarez@aspirante.es", "passwd4");
             añadeUsuario("celizari", "Carmen", "Elizari Cuasante", Roles.Aspirante, "c.elizari@aspirante.es", "passwd5");
-            añadeUsuario("alopez", "Alberto", "Lopez Marijuan", Roles.Aspirante, "a.lopez@aspirante.es", "passwd6");
-            añadeUsuario("emodron", "Emilia", "Modron Alonso", Roles.Aspirante, "e.modron@aspirante.es", "passwd7");
+            añadeUsuario("alopez", "Alberto", "López Marijuan", Roles.Aspirante, "a.lopez@aspirante.es", "passwd6");
+            añadeUsuario("emodron", "Emilia", "Modrón Alonso", Roles.Aspirante, "e.modron@aspirante.es", "passwd7");
             añadeUsuario("mdelgado", "Maria del Mar", "Delgado Benito", Roles.Aspirante, "m.delgado@aspirante.es", "passwd8");
-            añadeUsuario("omartinez", "Oscar", "Martinez Ezquerro", Roles.Aspirante, "o.martinez@aspirante.es", "passwd9");
-            añadeUsuario("pcuesta", "Pedro Luis", "Cuesta Martin", Roles.Aspirante, "p.cuesta@aspirante.es", "passwd10");
+            añadeUsuario("omartinez", "Oscar", "Martínez Ezquerro", Roles.Aspirante, "o.martinez@aspirante.es", "passwd9");
+            añadeUsuario("pcuesta", "Pedro Luis", "Cuesta Martín", Roles.Aspirante, "p.cuesta@aspirante.es", "passwd10");
             añadeUsuario("crubio", "Consuelo", "Rubio Abad", Roles.Aspirante, "c.rubio@aspirante.es", "passwd11");
 
             // Añade pruebas
-            añadePrueba("Prueba psicotencia empresa A", "lalonso");
-            añadePrueba("Prueba psicotencia empresa B", "lalonso");
-            añadePrueba("Prueba fisica empresa A", "eblanco");
-            añadePrueba("Prueba fisica empresa B", "eblanco");
-            añadePrueba("Prueba psicotencia empresa C", "lalonso");
+            añadePrueba("Prueba psicoténcia empresa A", "lalonso");
+            añadePrueba("Prueba psicoténcia empresa B", "lalonso");
+            añadePrueba("Prueba física empresa A", "eblanco");
+            añadePrueba("Prueba física empresa B", "eblanco");
+            añadePrueba("Prueba psicoténcia empresa C", "lalonso");
 
             // Añade calificaciones
             añadeCalificacion(0, "aperez");
@@ -120,7 +120,7 @@ namespace Logica
             return null;
         }
         
-        public Prueba leePrueba(int _idPrueba)
+        private Prueba leePrueba(int _idPrueba)
         {
             if (pruebas.ContainsKey(_idPrueba))
                 return pruebas[_idPrueba];
@@ -137,19 +137,13 @@ namespace Logica
 
         public Boolean añadeUsuario(string _cuenta, string _nombre, string _apellidos, Roles _rol, string _eMail, string _password)
         {
-            if (_cuenta != null && _cuenta != "" && _nombre != null && _nombre != ""
-                && _apellidos != null && _apellidos != "" 
-                && _eMail != null && _eMail != "" && _password != null && _password !="")
+            Usuario u = leeUsuario(_cuenta);
+            if (u == null)
             {
-                Usuario u = leeUsuario(_cuenta);
-                if (u == null)
-                {
-                    u = new Usuario(idU++, _cuenta, _nombre, _apellidos, _rol, _eMail, _password);
-                    usuarios.Add(u.GetHashCode(), u);
-                    return true;
-                }
+                u = new Usuario(idU++, _cuenta, _nombre, _apellidos, _rol, _eMail, _password);
+                usuarios.Add(u.GetHashCode(), u);
+                return true;
             }
-            
             return false;
         }
 
