@@ -16,7 +16,7 @@ namespace Logica
 
         public DBPruebas()
         {
-            cargaDatosIniciales();
+            //cargaDatosIniciales();
         }
 
         public Boolean comprobarContraseña(string _cuenta, string _password)
@@ -90,6 +90,25 @@ namespace Logica
             añadeCalificacion(4, "pcuesta");
             añadeCalificacion(4, "crubio");
 
+            //Algunas pruebas calificadas
+            modificaCalificacion(0, "aperez", 5.5);
+            modificaCalificacion(4, "aperez", 8.8);
+            modificaCalificacion(0, "lalvarez", 6.3);
+            modificaCalificacion(4, "lalvarez", 6.3);
+            modificaCalificacion(0, "celizari", 7.5);
+            modificaCalificacion(2, "celizari", 6.6);
+            modificaCalificacion(4, "celizari", 7.2);
+            modificaCalificacion(0, "alopez", 8.9);
+            modificaCalificacion(4, "alopez", 2.2);
+            modificaCalificacion(0, "emodron", 4.3);
+            modificaCalificacion(2, "emodron", 7.8);
+            modificaCalificacion(4, "emodron", 4.7);
+            modificaCalificacion(4, "mdelgado", 8.3);
+            modificaCalificacion(2, "omartinez", 9.2);
+            modificaCalificacion(4, "omartinez", 2.1);
+            modificaCalificacion(4, "pcuesta", 5);
+            modificaCalificacion(2, "crubio", 9.6);
+            modificaCalificacion(4, "crubio", 6.8);
             return true;
         }
 

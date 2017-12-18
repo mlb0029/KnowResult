@@ -39,6 +39,7 @@ namespace SeleniumTests
             {
                 while(!reader.EndOfStream)
                 {
+
                     var line = reader.ReadLine();
                     var values = line.Split(';');
                     driver.Navigate().GoToUrl(baseURL + "/Login.aspx");

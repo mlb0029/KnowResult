@@ -26,8 +26,8 @@ namespace www
             calificaciones = basededatos.calificacionesAspirante(usuario.Cuenta);
             foreach (var item in calificaciones)
             {
-                form1.Controls.Add(new Label() {Width=250, Text = item.Prueba.Nombre +":"});
-                form1.Controls.Add(new Label() { Width = 200, Text = (item.Calificada ? item.Nota.ToString() : "No calificada") });
+                form1.Controls.Add(new Label() { ID = String.Format("Prueba:{0}", item.Prueba.IdPrueba), Width =250, Text = item.Prueba.Nombre +":"});
+                form1.Controls.Add(new Label() { ID = String.Format("Calificacion:{0}", item.Prueba.IdPrueba), Width = 200, Text = (item.Calificada ? item.Nota.ToString() : "No calificada") });
                 form1.Controls.Add(new LiteralControl("<br/>"));
         }
             user.Text = usuario.Cuenta;

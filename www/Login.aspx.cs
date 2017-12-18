@@ -11,31 +11,29 @@ namespace www
 {
     public partial class Login : System.Web.UI.Page
     {
-       
+        ICapaDatos basededatos;
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            
-        }
-
-        protected void botonlog_Click(object sender, EventArgs e)
-        {
-            ICapaDatos basededatos;
             if (Session["basededatos"] == null)
             {
                 basededatos = new DBPruebas();
+                basededatos.cargaDatosIniciales();
                 Session["basededatos"] = basededatos;
             }
             else
             {
                 basededatos = (ICapaDatos)Session["basededatos"];
             }
-            
+        }
+
+        protected void botonlog_Click(object sender, EventArgs e)
+        {
             Usuario usuario = basededatos.leeUsuario(TextBox1.Text);
             LabelError.Text = "";
-            if ((usuario == null) || (!basededatos.comprobarContraseña(TextBox1.Text,TextBox2.Text)))
-                {
-                    LabelError.Text = "El usuario o contraseña introducidos no son validos";
+            if ((usuario == null) || (!basededatos.comprobarContraseña(TextBox1.Text, TextBox2.Text)))
+            {
+                LabelError.Text = "El usuario o contraseña introducidos no son validos";
             }
             else
             {
@@ -61,17 +59,14 @@ namespace www
                         break;
                 }
             }
-          
-
-
-}
+        }
 
         protected void Button2_Click(object sender, EventArgs e)
         {
             Response.Redirect("~/recuperar.aspx");
         }
     }
-    }
+}
 
 
 
