@@ -8,7 +8,7 @@ using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Support.UI;
 using System.IO;
 
-namespace SeleniumTests
+namespace wwwTest
 {
     [TestClass]
     public class LoginTest
